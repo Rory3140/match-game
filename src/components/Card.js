@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 export const Card = ({ onPress, value, isFlipped }) => {
   return (

@@ -1,5 +1,11 @@
 import * as React from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  SafeAreaView,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import Constants from "expo-constants";
 
 import { GameBoard } from "./src/components/GameBoard";
@@ -47,7 +53,7 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.h1}>Match Game</Text>
       </View>
@@ -62,7 +68,7 @@ export default function App() {
           <Text>Reset</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
