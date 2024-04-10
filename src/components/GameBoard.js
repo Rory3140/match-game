@@ -4,25 +4,6 @@ import { Text, View, StyleSheet } from "react-native";
 import { Card } from "./Card";
 
 export const GameBoard = ({ setScore, cards, setCards }) => {
-
-  React.useEffect(() => {
-    const randomizeCards = () => {
-      const copyOfCards = [...cards];
-      for (let i = copyOfCards.length - 1; i > 0; i--) {
-        for (let j = copyOfCards[i].length - 1; j > 0; j--) {
-          const randomRowIndex = Math.floor(Math.random() * (i + 1));
-          const randomColIndex = Math.floor(Math.random() * (j + 1));
-          [copyOfCards[i][j], copyOfCards[randomRowIndex][randomColIndex]] = [
-            copyOfCards[randomRowIndex][randomColIndex],
-            copyOfCards[i][j],
-          ];
-        }
-      }
-      setCards(copyOfCards);
-    };
-    randomizeCards();
-  }, []);
-
   const [firstCard, setFirstCard] = React.useState({ row: -1, col: -1 });
 
   function handleFlip(row, col) {
@@ -38,11 +19,9 @@ export const GameBoard = ({ setScore, cards, setCards }) => {
         const firstSelectedCard = copyOfCards[firstCard.row][firstCard.col];
 
         if (selectedCard.name === firstSelectedCard.name) {
-          console.log("Matching cards!");
           setScore((prevScore) => prevScore + 2);
           setCards(copyOfCards);
         } else {
-          console.log("Not matching cards!");
           setScore((prevScore) => prevScore - 1);
 
           setTimeout(() => {

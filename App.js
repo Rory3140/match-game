@@ -19,10 +19,10 @@ export default function App() {
       { name: "Four", isFlipped: false },
     ],
     [
-      { name: "Four", isFlipped: false },
-      { name: "Three", isFlipped: false },
-      { name: "Two", isFlipped: false },
-      { name: "One", isFlipped: false },
+      { name: "Five", isFlipped: false },
+      { name: "Six", isFlipped: false },
+      { name: "Seven", isFlipped: false },
+      { name: "Eight", isFlipped: false },
     ],
     [
       { name: "One", isFlipped: false },
@@ -31,12 +31,31 @@ export default function App() {
       { name: "Four", isFlipped: false },
     ],
     [
-      { name: "Four", isFlipped: false },
-      { name: "Three", isFlipped: false },
-      { name: "Two", isFlipped: false },
-      { name: "One", isFlipped: false },
+      { name: "Five", isFlipped: false },
+      { name: "Six", isFlipped: false },
+      { name: "Seven", isFlipped: false },
+      { name: "Eight", isFlipped: false },
     ],
   ]);
+
+  const randomizeCards = () => {
+    const copyOfCards = [...cards];
+    for (let i = copyOfCards.length - 1; i > 0; i--) {
+      for (let j = copyOfCards[i].length - 1; j > 0; j--) {
+        const randomRowIndex = Math.floor(Math.random() * (i + 1));
+        const randomColIndex = Math.floor(Math.random() * (j + 1));
+        [copyOfCards[i][j], copyOfCards[randomRowIndex][randomColIndex]] = [
+          copyOfCards[randomRowIndex][randomColIndex],
+          copyOfCards[i][j],
+        ];
+      }
+    }
+    setCards(copyOfCards);
+  };
+
+  React.useEffect(() => {
+    randomizeCards();
+  }, []);
 
   const [score, setScore] = React.useState(0);
 
@@ -50,6 +69,7 @@ export default function App() {
       }
     }
     setCards(copyOfCards);
+    randomizeCards();
   }
 
   return (
